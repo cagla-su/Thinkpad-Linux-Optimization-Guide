@@ -21,3 +21,4 @@ Hello. In this guide, you will be informed about how to optimize your Thinkpad d
   - Fedora Kinoite
   - Bazzite Linux (good for gaming)
 ## Increase Audio Quality
+Laptop speakers sound worse on Linux. In order to enhance your speaker experience:
