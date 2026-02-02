@@ -239,3 +239,147 @@ vm.swappiness = 100
 ```
 sudo sysctl --system
 ```
+# Other Tweaks
+## Disabling NetworkManager-wait-online.service
+Disabling `NetworkManager-wait-online.service` allows your system to load faster.
+```
+sudo systemctl disable NetworkManager-wait-online.service
+```
+# Terminal Customization
+## <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/a4a4ce43-0e32-406f-951a-8761be2f9c5e" /> Fish and Fastfetch
+Fish is a sweet command line shell that predicts what you are going to type based on your previous terminal commands. Fastfetch is a system information tool that makes your terminal look better.
+- Install `fish` and `fastfetch` according to your package manager.
+```
+chsh -s /usr/bin/fish # you should reboot after running the command
+```
+- If terminal tells you that the **process has failed**, try `chsh -s /bin/fish` instead.
+- Additionally, if you would like to see **fastfetch** every time you launch terminal, you should execute the commands below:
+```
+  function fish_greeting
+  fastfetch
+  end
+```
+```
+funcsave fish_greeting
+```
+Lastly, if you would like to try, this is my custom fastfetch appearance:
+<img width="712" height="375" alt="image" src="https://github.com/user-attachments/assets/4839909f-dc9a-43f0-afca-14f3ac4a2dd8" />
+```
+sudo mkdir ~/.config/fastfetch/ && sudo nano ~/.config/fastfetch/config.jsonc
+```
+```
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+"logo": {
+"type": "small",
+"padding": {
+        "top": 6,
+        "left": 3
+    },
+"color": {
+"1": "magenta",
+"2": "magenta"
+}
+},
+"modules": [
+    // Title
+    {
+      "type": "title",
+      "format": "{#1}╭───────────────────"
+    },
+    // System Information
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}>^^< System Information >^^<"
+    },
+{
+      "type": "host",
+      "key": "│ Computer Model",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "os",
+      "key": "│ Operating System",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "kernel",
+      "key": "│ Kernel",
+      "keyColor": "magenta"
+    },
+{
+      "type": "packages",
+      "key": "│ Packages",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Desktop
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}>^^< Desktop >^^<",
+    },
+    {
+      "type": "de",
+      "key": "│ Desktop Environment",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "wm",
+      "key": "│ Window Manager",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "shell",
+      "key": "│ Shell",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Hardware Information
+    {
+      "type": "custom",
+      "format": "{#1}│ {#}>^^< Hardware Information >^^<",
+    },
+    {
+      "type": "cpu",
+      "key": "│ Processor",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "gpu",
+      "key": "│ Graphics Card",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "memory",
+      "key": "│ Memory",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "key": "│ Disk",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+    // Colors
+    {
+      "type": "colors",
+      "key": "{#separator}│",
+      "symbol": "circle"
+    },
+    // Footer
+    {
+      "type": "custom",
+      "format": "{#1}╰───────────────────"
+    }
+  ]
+}
+```
