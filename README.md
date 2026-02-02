@@ -229,3 +229,13 @@ swap-priority = 100
 sudo systemctl daemon-reload
 sudo systemctl start /dev/zram0
 ```
+- Last, regardless of the distribution, follow the steps below:
+```
+sudo nano /etc/sysctl.d/99-zram.conf
+```
+```
+vm.swappiness = 100
+```
+```
+sudo sysctl --system
+```
