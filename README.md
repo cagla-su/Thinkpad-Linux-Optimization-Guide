@@ -22,3 +22,8 @@ Hello. In this guide, you will be informed about how to optimize your Thinkpad d
   - Bazzite Linux (good for gaming)
 ## Increase Audio Quality
 Laptop speakers sound worse on Linux. In order to enhance your speaker experience:
+- Install **EasyEffects** using your package manager or Flatpak.
+- Next, you can prefer either [one of the community presets](https://github.com/wwmm/easyeffects/wiki/Community-presets) or [my own preset](https://github.com/cagla-su/Thinkpad-Linux-Optimization-Guide/releases)
+  - In my own preset, the steps you should apply are explained.
+## Increase Battery Life and Performance
+
