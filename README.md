@@ -64,7 +64,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 ### ⚠️
-- The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange of power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
+- The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
 - The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
   - <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> **Intel -** *8th gen and older processors*
   - <img width="16" height="32" alt="image" src="https://github.com/user-attachments/assets/bea33d54-3560-4d14-a706-6a4edef4e8a6" /> **AMD -** *Zen 1, Zen+ and Zen 2 processors*
@@ -137,9 +137,95 @@ RUNTIME_PM_ON_BAT=auto
 START_CHARGE_THRESH_BAT0=85
 STOP_CHARGE_THRESH_BAT0=90
 ```
-## Undervolting
+## Undervolting (Intel Only)
 - Undervolting makes your computer **consume less power without reducing performance**.
   - In fact, it **might increase your performance** if your computer intentionally reduces your performance due to overheating issue.
   - Since your computer consumes less power, it will **naturally increase battery life**. So, it is a win-win.
 - However, undervolting **will not work** on <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> Intel **10th gen and later** processors.
 - Install [throttled](https://github.com/erpalma/throttled) making sure your system **does not** have `thermald` package installed.
+```
+sudo nano /etc/throttled.conf
+```
+- These values are the stable values for **Thinkpad T490**. So please **do not copy the same values** as they might **crash your system**!!!
+- You can get help from AI for finding your own stable values. However, I can at least say that going **beyond -60** for Intel GPUs are generally **unstable**.
+```
+[BATTERY]
+Update_Rate_s: 60
+PL1_Tdp_W: 8
+PL1_Duration_s: 28
+PL2_Tdp_W: 12
+PL2_Duration_S: 0.002
+Trip_Temp_C: 65
+cTDP: 1
+Disable_BDPROCHOT: False
+
+[AC]
+Update_Rate_s: 5
+PL1_Tdp_W: 17
+PL1_Duration_s: 28
+PL2_Tdp_W: 28
+PL2_Duration_S: 0.002
+Trip_Temp_C: 90
+HWP_Mode: False
+cTDP: 2
+
+[UNDERVOLT.BATTERY]
+CORE: -105
+GPU: -60
+CACHE: -105
+UNCORE: -60
+ANALOGIO: 0
+
+[UNDERVOLT.AC]
+CORE: -90
+GPU: -60
+CACHE: -90
+UNCORE: -60
+ANALOGIO: 0
+```
+## Swap and ZRAM Configuration
+### Swap - For 12 GB and Lower RAM
+If you have **at least 16 GB RAM**, disable swap for **the best RAM efficiency**:
+```
+sudo nano /etc/fstab
+```
+- Next, find the line that includes `swap` and add a `#` sign at the beginning of the line and save the file.
+- If you have 12 GB RAM or lower, keep using swap.
+### ZRAM - For 16 GB and Higher RAM
+Install a ZRAM manager:
+- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/c56a6d0a-133d-4bcf-a594-f4cd8b58e335" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7960ea90-ac89-4e3a-9839-cd77f9ec2b24" /> **For Debian/Ubuntu and Derivatives:**
+```
+sudo apt install zram-tools
+```
+- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> **For Arch Linux and Derivatives:**
+```
+sudo pacman -S zram-generator
+```
+- For <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> Fedora and derivatives, a ZRAM manager is already installed.
+- Next, apply the steps below for configuration:
+- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/c56a6d0a-133d-4bcf-a594-f4cd8b58e335" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7960ea90-ac89-4e3a-9839-cd77f9ec2b24" /> **For Debian/Ubuntu and Derivatives:**
+```
+sudo nano /etc/default/zramswap
+```
+```
+ALLOCATION=8192
+PRIORITY=100
+COMPRESSION_ALGO=zstd
+```
+```
+sudo systemctl restart zramswap
+```
+- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> **For Arch/Fedora and Derivatives:**
+```
+sudo nano /etc/systemd/zram-generator.conf
+```
+```
+[zram0]
+zram-size = 8192
+compression-algorithm = zstd
+swap-priority = 100
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl start /dev/zram0
+```
