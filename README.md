@@ -245,9 +245,13 @@ Disabling `NetworkManager-wait-online.service` allows your system to load faster
 ```
 sudo systemctl disable NetworkManager-wait-online.service
 ```
-# Terminal Customization
-## <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/a4a4ce43-0e32-406f-951a-8761be2f9c5e" /> Fish and Fastfetch
-Fish is a sweet command line shell that predicts what you are going to type based on your previous terminal commands. Fastfetch is a system information tool that makes your terminal look better.
+# Customization
+## Login Screen Customization
+I suggest [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme) for a better login screen.
+- There are multiple themes included in the project, there are also animated themes if you prefer.
+- Even if you use a desktop environment that does not use SDDM, the script will replace it with SDDM and it will work after a reboot.
+## <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/a4a4ce43-0e32-406f-951a-8761be2f9c5e" /> Terminal Customization
+**Fish** is a sweet command line shell that predicts what you are going to type based on your previous terminal commands. **Fastfetch** is a system information tool that makes your terminal look better.
 - Install `fish` and `fastfetch` according to your package manager.
 ```
 chsh -s /usr/bin/fish # you should reboot after running the command
