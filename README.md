@@ -18,8 +18,6 @@ Hello. In this guide, you will be informed about how to optimize your Thinkpad d
   - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/ec6b02a8-c62b-447b-b03b-3d546c4e9e1a" /> **CachyOS** (good for gaming performance)
 - For **the balance of stability and up to date packages**
   - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> **Fedora**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/fa7540b2-6f3a-45b6-8bb9-c222302e2501" /> **Kinoite**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7f948b42-1eb5-4fa0-b284-6f1ec433319b" /> **Bazzite** (good for out of the box gaming)
 # Increase Audio Quality
 Laptop speakers sound worse on Linux. In order to enhance your speaker experience:
 - Install <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/9dab98c4-08f9-4cf4-9f5c-3eff8746ab55" /> **EasyEffects** using your package manager or Flatpak.
@@ -27,7 +25,6 @@ Laptop speakers sound worse on Linux. In order to enhance your speaker experienc
   - In my own preset, the steps you should apply are explained.
 # Increase Battery Life and Performance
 ## Kernel Parameter
-Changing kernel configurations will not work on **immutable** distributions like <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/fa7540b2-6f3a-45b6-8bb9-c222302e2501" /> **Kinoite** and <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7f948b42-1eb5-4fa0-b284-6f1ec433319b" /> **Bazzite**.
 ### For systemd-boot
 ```
 ls /boot/loader/entries/
