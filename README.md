@@ -63,7 +63,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
-### ⚠️
+> [!NOTE]
 - The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
 - The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
   - <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> **Intel -** *8th gen and older processors*
@@ -183,63 +183,6 @@ CACHE: -90
 UNCORE: -60
 ANALOGIO: 0
 ```
-## Swap and ZRAM Configuration
-### Swap - For 12 GB and Lower RAM
-If you have **at least 16 GB RAM**, disable swap for **the best RAM efficiency**:
-```
-sudo nano /etc/fstab
-```
-- Next, find the line that includes `swap` and add a `#` sign at the beginning of the line and save the file.
-- If you have 12 GB RAM or lower, keep using swap.
-### ZRAM - For 16 GB and Higher RAM
-Install a ZRAM manager:
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/c56a6d0a-133d-4bcf-a594-f4cd8b58e335" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7960ea90-ac89-4e3a-9839-cd77f9ec2b24" /> **For Debian/Ubuntu and Derivatives:**
-```
-sudo apt install zram-tools
-```
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> **For Arch Linux and Derivatives:**
-```
-sudo pacman -S zram-generator
-```
-- For <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> Fedora and derivatives, a ZRAM manager is already installed.
-- Next, apply the steps below for configuration:
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/c56a6d0a-133d-4bcf-a594-f4cd8b58e335" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7960ea90-ac89-4e3a-9839-cd77f9ec2b24" /> **For Debian/Ubuntu and Derivatives:**
-```
-sudo nano /etc/default/zramswap
-```
-```
-ALLOCATION=8192
-PRIORITY=100
-COMPRESSION_ALGO=zstd
-```
-```
-sudo systemctl restart zramswap
-```
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> **For Arch/Fedora and Derivatives:**
-```
-sudo nano /etc/systemd/zram-generator.conf
-```
-```
-[zram0]
-zram-size = 8192
-compression-algorithm = zstd
-swap-priority = 100
-```
-```
-sudo systemctl daemon-reload
-sudo systemctl start /dev/zram0
-```
-- Last, regardless of the distribution, follow the steps below:
-```
-sudo nano /etc/sysctl.d/99-zram.conf
-```
-```
-vm.swappiness = 100
-```
-```
-sudo sysctl --system
-```
-# Other Tweaks
 ## Disabling NetworkManager-wait-online.service
 Disabling `NetworkManager-wait-online.service` allows your system to load faster.
 ```
