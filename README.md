@@ -148,23 +148,24 @@ sudo nano /etc/throttled.conf
 ```
 [BATTERY]
 Update_Rate_s: 60
-PL1_Tdp_W: 8
+PL1_Tdp_W: 10
 PL1_Duration_s: 28
-PL2_Tdp_W: 12
-PL2_Duration_S: 0.002
+PL2_Tdp_W: 15
+PL2_Duration_S: 5
 Trip_Temp_C: 65
 cTDP: 1
 Disable_BDPROCHOT: False
 
 [AC]
 Update_Rate_s: 5
-PL1_Tdp_W: 17
+PL1_Tdp_W: 20
 PL1_Duration_s: 28
-PL2_Tdp_W: 28
-PL2_Duration_S: 0.002
-Trip_Temp_C: 90
+PL2_Tdp_W: 25
+PL2_Duration_S: 28
+Trip_Temp_C: 85
 HWP_Mode: False
 cTDP: 2
+Disable_BDPROCHOT: True
 
 [UNDERVOLT.BATTERY]
 CORE: -105
