@@ -62,11 +62,11 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
 > [!NOTE]
-- The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
-- The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
-  - <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> **Intel -** *8th gen and older processors*
-  - <img width="16" height="32" alt="image" src="https://github.com/user-attachments/assets/bea33d54-3560-4d14-a706-6a4edef4e8a6" /> **AMD -** *Zen 1, Zen+ and Zen 2 processors*
-- So if you have **a newer processor**, you **do not** have to use this kernel parameter. Plus, it **creates a huge security risk**. **Do not use** this kernel parameter if you **do not want to maximize performance** on your old hardware.
+> - The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
+> - The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
+>  - <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> **Intel -** *8th gen and older processors*
+>  - <img width="16" height="32" alt="image" src="https://github.com/user-attachments/assets/bea33d54-3560-4d14-a706-6a4edef4e8a6" /> **AMD -** *Zen 1, Zen+ and Zen 2 processors*
+> - So if you have **a newer processor**, you **do not** have to use this kernel parameter. Plus, it **creates a huge security risk**. **Do not use** this kernel parameter if you **do not want to maximize performance** on your old hardware.
 ## Power Manager
 - I definitely suggest that you use **TLP** because it is **more advanced** than other power managers.
 - However, your system might already have another power manager installed, distributions nowadays use either `power-profiles-daemon` or `tuned`. Try removing each to make sure they are not installed.
