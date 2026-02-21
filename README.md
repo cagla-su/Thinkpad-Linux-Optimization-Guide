@@ -60,6 +60,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
+
 > [!NOTE]
 - The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
 - The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
