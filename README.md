@@ -9,18 +9,18 @@ Hello. In this guide, you will be informed about how to optimize your Thinkpad d
 # Get Started
 ## Distribution Suggestions
 - For **the maximum stability**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/065bc13d-97f3-4c53-9c74-e15046dc6552" /> **MX Linux**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/39f781e5-9fd1-4828-b0ab-bbfb35630636" /> **Linux Mint**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/d58caa55-0b42-4643-9a0a-5751ea57c8cc" /> **Zorin**
+  - **MX Linux**
+  - **Linux Mint**
+  - **Zorin**
 - For having **the most up to date packages**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> **Arch Linux**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/15ccfca8-e397-4b65-a486-ebdd929407a2" /> **EndeavourOS**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/ec6b02a8-c62b-447b-b03b-3d546c4e9e1a" /> **CachyOS** (good for gaming performance)
+  - **Arch Linux**
+  - **EndeavourOS**
+  - **CachyOS** (good for gaming performance)
 - For **the balance of stability and up to date packages**
-  - <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> **Fedora**
+  - **Fedora**
 # Increase Audio Quality
 Laptop speakers sound worse on Linux. In order to enhance your speaker experience:
-- Install <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/9dab98c4-08f9-4cf4-9f5c-3eff8746ab55" /> **EasyEffects** using your package manager or Flatpak.
+- Install **EasyEffects** using your package manager or Flatpak.
 - Next, you can prefer either [one of the community presets](https://github.com/wwmm/easyeffects/wiki/Community-presets) or [my own preset](https://github.com/cagla-su/Thinkpad-Linux-Optimization-Guide/releases)
   - In my own preset, the steps you should apply are explained.
 # Increase Battery Life and Performance
@@ -48,15 +48,15 @@ Now find the line that starts with `GRUB_CMDLINE_LINUX_DEFAULT` and add these tw
 mitigations=off rcutree.enable_rcu_lazy=1
 ```
 Next, save the file and update GRUB configuration file according to your distribution:
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/c56a6d0a-133d-4bcf-a594-f4cd8b58e335" /> <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/7960ea90-ac89-4e3a-9839-cd77f9ec2b24" /> **For Debian/Ubuntu and Derivatives:**
+- **For Debian/Ubuntu and Derivatives:**
 ```
 sudo update-grub
 ```
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f0cf4e0-7653-4ad9-ade3-5e70fa83e444" /> **For Arch Linux and Derivatives:**
+- **For Arch Linux and Derivatives:**
 ```
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
-- <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/8f714534-3c7a-44b2-8ca5-9685a551dd94" /> **For Fedora and Derivatives:**
+- **For Fedora and Derivatives:**
 ```
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
@@ -64,8 +64,8 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 > [!NOTE]
 > - The `rcutree.enable_rcu_lazy=1` kernel parameter reduces power usage when your system is **idle** or **lightly loaded**. In exchange for power saving, it might **reduce your performance** but you probably will not feel the difference on performance at all.
 > - The `mitigations=off` kernel parameter simply disables the patches applied for hardware-based security vulnerabilities, which increases performance on these processors:
->  - <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> **Intel -** *8th gen and older processors*
->  - <img width="16" height="32" alt="image" src="https://github.com/user-attachments/assets/bea33d54-3560-4d14-a706-6a4edef4e8a6" /> **AMD -** *Zen 1, Zen+ and Zen 2 processors*
+>  - **Intel -** *8th gen and older processors*
+>  - **AMD -** *Zen 1, Zen+ and Zen 2 processors*
 > - So if you have **a newer processor**, you **do not** have to use this kernel parameter. Plus, it **creates a huge security risk**. **Do not use** this kernel parameter if you **do not want to maximize performance** on your old hardware.
 ## Power Manager
 - I definitely suggest that you use **TLP** because it is **more advanced** than other power managers.
@@ -139,7 +139,7 @@ STOP_CHARGE_THRESH_BAT0=90
 - Undervolting makes your computer **consume less power without reducing performance**.
   - In fact, it **might increase your performance** if your computer intentionally reduces your performance due to overheating issue.
   - Since your computer consumes less power, it will **naturally increase battery life**. So, it is a win-win.
-- However, undervolting **will not work** on <img width="16" height="25" alt="intel" src="https://github.com/user-attachments/assets/315abff4-87d6-4779-b38d-08f07b8237a4" /> Intel **10th gen and later** processors.
+- However, undervolting **will not work** on Intel **10th gen and later** processors.
 - Install [throttled](https://github.com/erpalma/throttled) making sure your system **does not** have `thermald` package installed.
 ```
 sudo nano /etc/throttled.conf
@@ -149,7 +149,7 @@ sudo nano /etc/throttled.conf
 ```
 [BATTERY]
 Update_Rate_s: 60
-PL1_Tdp_W: 8
+PL1_Tdp_W: 10
 PL1_Duration_s: 28
 PL2_Tdp_W: 12
 PL2_Duration_S: 5
@@ -159,9 +159,9 @@ Disable_BDPROCHOT: False
 
 [AC]
 Update_Rate_s: 5
-PL1_Tdp_W: 21
+PL1_Tdp_W: 23
 PL1_Duration_s: 28
-PL2_Tdp_W: 25
+PL2_Tdp_W: 26
 PL2_Duration_S: 0.002
 Trip_Temp_C: 95
 HWP_Mode: False
@@ -169,9 +169,9 @@ cTDP: 2
 Disable_BDPROCHOT: False
 
 [UNDERVOLT.BATTERY]
-CORE: -105
+CORE: -90
 GPU: -60
-CACHE: -105
+CACHE: -90
 UNCORE: -60
 ANALOGIO: 0
 
@@ -192,7 +192,7 @@ sudo systemctl disable NetworkManager-wait-online.service
 I suggest [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme) for a better login screen.
 - There are multiple themes included in the project, there are also animated themes if you prefer.
 - Even if you use a desktop environment that does not use SDDM, the script will replace it with SDDM and it will work after a reboot.
-## <img width="16" height="25" alt="image" src="https://github.com/user-attachments/assets/a4a4ce43-0e32-406f-951a-8761be2f9c5e" /> Terminal Customization
+## Terminal Customization
 **Fish** is a sweet command line shell that predicts what you are going to type based on your previous terminal commands. **Fastfetch** is a system information tool that makes your terminal look better.
 - Install `fish` and `fastfetch` according to your package manager.
 ```
